@@ -114,7 +114,7 @@ Write it separately, every time. It is read before it is heard.
 ## Rules that make the difference
 
 - **One idea per Reel.** If the script has two, you have two Reels. Say so.
-- **Numbers over adjectives.** "$4,200" beats "a lot". If the user has not
+- **Numbers over adjectives.** "4,200 dollars" beats "a lot". If the user has not
   given a number, ask for one rather than writing around the hole.
 - **Cut the intro.** No greeting, no "in this video", no name, no logo sting.
   The video starts at the sentence you would normally reach at second six.
@@ -134,14 +134,23 @@ Write it separately, every time. It is read before it is heard.
 ```
 
 ```
-HOOKS  (scored)
-  86  STRONG  #5  Time Collapse   "Proposals used to take me five hours. Twenty minutes now."
-                                  on screen: 5 HOURS -> 20 MIN
-  71  STRONG  #1  Cost Confession "I billed four hours a week for formatting. For two years."
+HOOKS  (first pass)
+  55  OK      #1  Cost Confession "I billed four hours a week for formatting. For two years."
+  51  OK      #5  Time Collapse   "Proposals used to take me five hours. Twenty minutes now."
+  37  WEAK    #9  The Steal       "Steal the proposal template that did it."
+
+All three score 20 on STAKES: nothing in them can be lost. Fix that one
+property and re-run.
+
+HOOKS  (second pass)
+  81  STRONG  #1  Cost Confession "I lost four hours a week to formatting. For two years."
                                   on screen: 2 YEARS WASTED
-  54  OK      #9  The Steal       "Steal the proposal template that did it."
+  79  STRONG  #5  Time Collapse   "I wasted five hours on every proposal. Now it takes twenty minutes."
+                                  on screen: 5 HOURS -> 20 MIN
+  77  STRONG  #9  The Steal       "Steal the template that cut five hours off every proposal."
                                   on screen: STEAL THIS
 
-Shooting #5: the ratio is believable, it reads in one glance on screen,
-and the number is yours.
+Shooting #5. Two points is not a real gap, because the scorer cannot separate
+decent hooks from each other. The ratio reads in one glance on screen and the
+numbers are yours.
 ```
