@@ -37,6 +37,19 @@ STOPWORDS = {
     "will", "can", "at", "as", "by", "from", "out", "up", "off", "one", "all",
 }
 
+# Spoken scripts say their numbers out loud. "Five hours" is as concrete as
+# "5 hours", and counting only digits missed it. Same lists as hookscore.py.
+SPOKEN_NUMBERS = {
+    "zero", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "fifteen", "twenty", "thirty", "forty", "fifty",
+    "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million",
+    "billion", "dozen", "half", "twice", "triple",
+}
+MONEY_WORDS = {
+    "dollars", "dollar", "bucks", "grand", "percent", "cents",
+    "millionaire", "billionaire", "revenue", "profit", "salary", "rent",
+}
+
 HOOK_WINDOW = 3.0        # seconds. Past this, the thumb has already decided.
 MAX_BEAT = 4.0           # seconds on one idea with no change on screen.
 ABSTRACT_RUN = 3         # beats in a row with nothing checkable in them.
@@ -45,6 +58,12 @@ ABSTRACT_RUN = 3         # beats in a row with nothing checkable in them.
 def words(text):
     # "$18,000" is one word when it is spoken, so it is one word here too.
     return WORD_RE.findall(re.sub(r"(?<=\d),(?=\d)", "", text))
+
+
+def concrete(text):
+    """Numbers, prices and names: written as digits or said as words."""
+    spoken = [w for w in words(text) if w.lower().strip("'’") in SPOKEN_NUMBERS | MONEY_WORDS]
+    return len(CONCRETE_RE.findall(text)) + len(spoken)
 
 
 def pretty(token):
@@ -98,7 +117,7 @@ def analyse(raw, wpm=165, target=None):
             "dur": round(dur, 2),
             "words": n,
             "text": text,
-            "concrete": len(CONCRETE_RE.findall(text)),
+            "concrete": concrete(text),
             "label": "",
             "flags": [],
         })
